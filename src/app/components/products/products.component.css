@@ -1,0 +1,7 @@
+.product .btn-main {
+  transform: translateY(130%);
+  transition: all 0.5s;
+}
+.product:hover .btn-main {
+  transform: translateY(0%);
+}

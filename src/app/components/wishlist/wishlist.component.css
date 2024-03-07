@@ -1,0 +1,18 @@
+.addtoCart {
+  border: #22db14 1px solid;
+  color: black;
+}
+
+.addtoCart:hover{
+  color:#22db14
+}
+
+
+.content button:hover i,
+.content button:hover {
+  color: red !important;
+}
+
+.content button {
+  transition: all 0.2s;
+}

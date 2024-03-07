@@ -1,0 +1,44 @@
+<div class="w-100 m-auto text-center">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Adress</th>
+        <th>Tax Price</th>
+        <th>Shiping Price</th>
+        <th>payment Status</th>
+        <th>shiping state</th>
+        <th>payment method</th>
+        <th>total price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of ordersDetails">
+        <td>{{ order.user.name }}</td>
+        <td>{{ order.user.phone }}</td>
+        <td>{{ order.shippingAddress.details }}</td>
+        <td>{{ order.taxPrice | currency : " EGP  "  }}</td>
+        <td>{{ order.shippingPrice | currency : " EGP  "  }}</td>
+        <td *ngIf="order.isPaid == true; else notPaid" class="text-success">
+          paid
+        </td>
+        <ng-template #notPaid>
+          <td class="text-danger">not paid</td>
+        </ng-template>
+
+        <td
+          *ngIf="order.isDelivered == true; else notDelivered"
+          class="text-success"
+        >
+          Delivered
+        </td>
+        <ng-template #notDelivered>
+          <td class="text-danger">not Delivered</td>
+        </ng-template>
+        <td>{{ order.paymentMethodType }}</td>
+        <td>{{ order.totalOrderPrice  | currency : " EGP  " }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

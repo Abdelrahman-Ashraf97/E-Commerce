@@ -1,0 +1,61 @@
+<div class="container">
+  <input
+    type="search"
+    name="search"
+    class="w-75 mx-auto form-control my-2 border-success mt-5 d-block"
+    placeholder="Search..."
+    [(ngModel)]="searchInput"
+  />
+  <section id="products ">
+    <div class="row g-4 my-2 cursor-pointer">
+      <div
+        class="col-md-3"
+        *ngFor="let product of products | searchPipe : searchInput"
+      >
+        <div class="product p-2">
+          <div [routerLink]="['/details', product._id]">
+            <figure>
+              <img
+                [src]="product.imageCover"
+                class="w-100 object-fit-contain"
+                [alt]="product.title"
+              />
+            </figure>
+            <div>
+              <span class="text-main"> {{ product.category.name }}</span>
+              <p>{{ product.title.split(" ").slice(0, 2).join(" ") }}</p>
+              <div class="d-flex justify-content-between">
+                <span> {{ product.price | currency : "EGP" }} </span>
+                <div>
+                  <i class="fas fa-star rating-color"></i>
+                  <span class="text-muted">{{ product.ratingsAverage }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-between">
+            <button
+              class="btn-main w-100 me-1"
+              (click)="addtocart(product._id)"
+            >
+              Add to Cart
+            </button>
+            <a>
+              <i
+                class="fa-solid fa-heart h3 inactive-heart"
+                (click)="addToWishList(product._id)"
+                *ngIf="!myWishList.includes(product._id)"
+              ></i>
+              <i
+                class="fa-solid fa-heart h3 active-heart"
+                (click)="deleteProduct(product._id)"
+                *ngIf="myWishList.includes(product._id)"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,9 @@
+<div class="row w-75 mx-auto g-4 my-3">
+  <h2 class="text-center text-main ">All Brands</h2>
+  <div class="col-md-3" *ngFor="let brand of brands">
+    <div class="cursor-pointer">
+      <img [src]="brand.image" [alt]="brand.name" class="w-100" />
+      <h3 class="text-center h6">{{ brand.name }}</h3>
+    </div>
+  </div>
+</div>

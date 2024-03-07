@@ -1,0 +1,31 @@
+.content button:hover i,
+.content button:hover {
+  color: red !important;
+}
+
+.fa-plus:hover {
+  color: #22db14 !important;
+  border-color: #22db14 !important;
+}
+.fa-minus:hover {
+  color: red;
+  border-color: red !important;
+}
+
+.clear-cart:hover {
+  color: black !important;
+  border-color: red !important;
+  background-color: red !important;
+}
+.border-green {
+  border: #22db14 1px solid !important;
+}
+.clear-cart {
+  background-color: var(--main-color);
+  padding: 7px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}

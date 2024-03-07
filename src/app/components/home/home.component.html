@@ -1,0 +1,71 @@
+<app-main-slider></app-main-slider>
+
+<section class="">
+  <h2 class="h4 fw-bolder">Shop Popular Categories</h2>
+  <div>
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let category of categories">
+        <ng-template carouselSlide>
+          <div class="cursor-pointer" [routerLink]="['/subCategory',category._id]">
+            <img
+              [src]="category.image"
+              [alt]="category.name"
+              [title]="category.name"
+              class="w-100 object-fit-cover"
+              height="350"
+            />
+            <h3 class="h5 text-center fw-bolder">{{ category.name }}</h3>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+</section>
+<input
+  type="search"
+  name="search"
+  class="w-75 mx-auto form-control my-2 border-success"
+  placeholder="Search..."
+  [(ngModel)]="searchInput"
+/>
+<section id="home ">
+  <div class="row g-4 my-2 cursor-pointer">
+    <div
+      class="col-md-2"
+      *ngFor="let product of products.slice(0, 15) | searchPipe : searchInput"
+    >
+      <div class="product p-2">
+        <div [routerLink]="['/details', product._id]">
+          <figure>
+            <img
+              [src]="product.imageCover"
+              class="w-100"
+              [alt]="product.title"
+            />
+          </figure>
+          <div>
+            <span class="text-main">{{ product.category.name }}</span>
+
+            <p>{{ product.title.split(" ").slice(0, 2).join(" ") }}</p>
+            <div class="d-flex justify-content-between">
+              <span> {{ product.price | currency : "EGP" }} </span>
+              <div>
+                <i class="fas fa-star rating-color"></i>
+                <span class="text-muted">{{ product.ratingsAverage }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between">
+          <button class="btn-main w-100 me-1" (click)="addtocart(product._id)">
+            Add to Cart
+          </button>
+          <a >
+            <i class="fa-solid fa-heart h3 inactive-heart" (click)="addToWishList(product._id)" *ngIf="!myWishList.includes(product._id)" ></i>
+            <i class="fa-solid fa-heart h3 active-heart" (click)="deleteProduct(product._id)" *ngIf="myWishList.includes(product._id)" ></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

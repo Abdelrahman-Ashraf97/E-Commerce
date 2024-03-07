@@ -1,0 +1,12 @@
+textarea {
+  resize: none;
+}
+label {
+  font-weight: 700;
+}
+i {
+  transform: translateY(20%);
+}
+.cash {
+  padding-inline: 33px;
+}

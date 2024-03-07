@@ -1,0 +1,123 @@
+<div class="w-50 mx-auto">
+  <form [formGroup]="checkoutDetails">
+    <div>
+      <label for="details" class="text-capitalize"> details:</label>
+      <textarea
+        name="details"
+        id="details"
+        cols="30"
+        rows="5"
+        formControlName="details"
+        class="form-control"
+        [ngClass]="{
+          'is-valid': checkoutDetails.get('details')?.valid,
+          'is-invalid':
+            checkoutDetails.get('details')?.touched &&
+            checkoutDetails.get('details')?.invalid
+        }"
+        #detailsInput
+      ></textarea>
+    </div>
+    <div
+      *ngIf="
+        checkoutDetails.get('details')?.errors &&
+        (checkoutDetails.get('details')?.touched ||
+          detailsInput.value.length > 0)
+      "
+    >
+      <p
+        class="alert alert-danger"
+        *ngIf="checkoutDetails.get('details')?.getError('required')"
+        ngClass="mt-1"
+      >
+        details is required
+      </p>
+    </div>
+
+    <div>
+      <label for="phone" class="text-capitalize"> Phone:</label>
+      <input
+        name="phone"
+        type="tel"
+        id="phone"
+        cols="30"
+        rows="10"
+        formControlName="phone"
+        class="form-control"
+        #phoneInput
+        [ngClass]="{
+          'is-valid': checkoutDetails.get('phone')?.valid,
+          'is-invalid':
+            checkoutDetails.get('phone')?.touched &&
+            checkoutDetails.get('phone')?.invalid
+        }"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        checkoutDetails.get('phone')?.errors &&
+        (checkoutDetails.get('phone')?.touched || phoneInput.value.length > 0)
+      "
+    >
+      <p *ngIf="checkoutDetails.get('phone')?.getError('required')">
+        Phone is required
+      </p>
+      <p *ngIf="checkoutDetails.get('phone')?.getError('pattern')">
+        accept only egypt phone numbers
+      </p>
+    </div>
+
+    <div>
+      <label for="city" class="text-capitalize"> city:</label>
+      <input
+        name="city"
+        type="text"
+        id="city"
+        cols="30"
+        rows="10"
+        formControlName="city"
+        class="form-control"
+        #cityInput
+        [ngClass]="{
+          'is-valid': checkoutDetails.get('city')?.valid,
+          'is-invalid':
+            checkoutDetails.get('city')?.touched &&
+            checkoutDetails.get('city')?.invalid
+        }"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        checkoutDetails.get('city')?.errors &&
+        (checkoutDetails.get('city')?.touched || cityInput.value.length > 0)
+      "
+    >
+      <p *ngIf="checkoutDetails.get('city')?.getError('required')">
+        city is required
+      </p>
+      <p *ngIf="checkoutDetails.get('city')?.getError('minlength')">
+        city Name is invalid
+      </p>
+    </div>
+    <div class="d-flex flex-column">
+      <button
+        [disabled]="checkoutDetails.invalid"
+        class="btn btn-main ms-auto d-block mt-3"
+        (click)="checkoutHandler()"
+      >
+        Online Payment <img src="./assets/images/visa-1.svg" alt="" />
+      </button>
+      <button
+        [disabled]="checkoutDetails.invalid"
+        class="btn btn-main ms-auto mt-2 cash"
+        (click)="cashHandler()"
+      >
+        Cash Payment
+
+        <i class="fa-regular fa-money-bill-1 h3 ps-1"></i>
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,13 @@
+<div class="row g-4 my-3 w-75 mx-auto cursor-pointer">
+  <div class="col-md-4" *ngFor="let category of categories">
+    <div  [routerLink]="['/subCategory',category._id]">
+      <img
+        [src]="category.image"
+        [alt]="category.name"
+        class="w-100"
+        height="300"
+      />
+      <h2 class="text-center">{{ category.name }}</h2>
+    </div>
+  </div>
+</div>
